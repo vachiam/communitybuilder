@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site",
+      "runtimeExecutable": "/opt/homebrew/bin/node",
+      "runtimeArgs": ["/Users/kevinvach/Downloads/site/node_modules/vite/bin/vite.js", "/Users/kevinvach/Downloads/site", "--port", "5173"],
+      "port": 5173
+    }
+  ]
+}
