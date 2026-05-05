@@ -1,8 +1,10 @@
-const STORAGE_KEY = 'ibd-brand-colors';
+import config from '../../community.config';
+
+const STORAGE_KEY = 'brand-colors';
 
 export const defaultColors = {
-  primary: '#2563EB',
-  secondary: '#1E40AF',
+  primary: config.brand.primaryColor,
+  secondary: config.brand.accentColor,
 };
 
 export function loadColors(): typeof defaultColors {

@@ -1,6 +1,7 @@
 import { Link, Outlet, useLocation } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import config from '../../community.config';
 
 export function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -25,7 +26,7 @@ export function Layout() {
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center gap-2">
               <div className="w-8 h-8 bg-blue-600 rounded-lg"></div>
-              <span className="text-xl font-semibold text-gray-900">IBD Community</span>
+              <span className="text-xl font-semibold text-gray-900">{config.shortName}</span>
             </Link>
 
             <div className="hidden md:flex items-center gap-8">
@@ -98,10 +99,10 @@ export function Layout() {
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 bg-blue-600 rounded-lg"></div>
-                <span className="text-xl font-semibold">IBD Community</span>
+                <span className="text-xl font-semibold">{config.shortName}</span>
               </div>
               <p className="text-white/70 max-w-md">
-                Connecting patients, caregivers, and healthcare professionals in the fight against inflammatory bowel disease.
+                {config.description}
               </p>
             </div>
 
@@ -117,14 +118,14 @@ export function Layout() {
             <div>
               <h3 className="font-semibold mb-4">Contact</h3>
               <p className="text-white/70">
-                info@ibdcommunity.org<br />
-                1-800-IBD-HELP
+                {config.contactEmail}<br />
+                {config.contactPhone}
               </p>
             </div>
           </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-white/70">
-            <p>&copy; 2026 IBD Community Network. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} {config.name}. All rights reserved.</p>
           </div>
         </div>
       </footer>

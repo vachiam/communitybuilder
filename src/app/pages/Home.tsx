@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import { Search, ArrowRight, MapPin, Calendar, Users, BookOpen } from 'lucide-react';
 import { mockExperts, mockArticles, mockEvents } from '../data/mockData';
 import ctaBg from '../../imports/photo-1631557676757-fcc7b1160be8.avif';
+import config from '../../community.config';
 
 export function Home() {
   const featuredExperts = mockExperts.slice(0, 3);
@@ -19,13 +20,13 @@ export function Home() {
             <div>
               <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1.5 rounded-full text-sm font-semibold mb-6">
                 <span className="w-2 h-2 bg-blue-600 rounded-full" />
-                IBD Community Network
+                {config.name}
               </div>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                Your IBD Community Network
+                {config.tagline}
               </h1>
               <p className="text-xl text-gray-600 mb-10 max-w-lg leading-relaxed">
-                Connect with expert gastroenterologists, access trusted resources, and find support in managing inflammatory bowel disease.
+                {config.description}
               </p>
               <div className="flex flex-wrap gap-4 mb-8">
                 <Link
@@ -133,7 +134,7 @@ export function Home() {
             <div>
               <p className="text-blue-600 font-semibold text-sm uppercase tracking-widest mb-4">Our Mission</p>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">
-                To empower individuals living with IBD through education, expert connections, and community support.
+                {config.mission}
               </h2>
               <Link to="/about" className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:gap-3 transition-all duration-200">
                 Learn About Us <ArrowRight size={18} />
@@ -310,10 +311,10 @@ export function Home() {
         <img src={ctaBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-multiply" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Join Our Community Today
+            Join {config.shortName} Today
           </h2>
           <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
-            Get access to expert resources, connect with specialists, and stay informed about the latest in IBD care.
+            {config.description}
           </p>
           <button className="px-10 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-colors text-lg">
             Get Started

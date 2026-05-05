@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router';
 import { Users, FileText, Calendar, Settings, LogOut, Plus, Edit, Trash2, Eye, FileEdit, Upload } from 'lucide-react';
 import { mockExperts, mockArticles, mockEvents } from '../data/mockData';
 import { loadColors, saveColors } from '../lib/theme';
+import config from '../../community.config';
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -370,14 +371,14 @@ export function Dashboard() {
                             <label className="block text-sm font-medium text-gray-700 mb-2">Hero Title</label>
                             <input
                               type="text"
-                              defaultValue="Your IBD Community Network"
+                              defaultValue={config.tagline}
                               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none"
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">Hero Subtitle</label>
                             <textarea
-                              defaultValue="Connect with expert gastroenterologists, access trusted resources, and find support in managing inflammatory bowel disease."
+                              defaultValue={config.description}
                               rows={3}
                               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none"
                             />
@@ -415,7 +416,7 @@ export function Dashboard() {
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">Mission Description</label>
                             <textarea
-                              defaultValue="To empower individuals living with IBD through education, expert connections, and community support."
+                              defaultValue={config.mission}
                               rows={3}
                               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none"
                             />
@@ -437,7 +438,7 @@ export function Dashboard() {
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">Banner Description</label>
                             <textarea
-                              defaultValue="Get access to expert resources, connect with specialists, and stay informed about the latest in IBD care."
+                              defaultValue={config.description}
                               rows={2}
                               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none"
                             />
@@ -470,14 +471,14 @@ export function Dashboard() {
                         <label className="block text-sm font-medium text-gray-700 mb-2">Page Title</label>
                         <input
                           type="text"
-                          defaultValue="About IBD Community Network"
+                          defaultValue={`About ${config.name}`}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none"
                         />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Page Subtitle</label>
                         <textarea
-                          defaultValue="Empowering individuals living with inflammatory bowel disease through education, expert connections, and community support."
+                          defaultValue={config.mission}
                           rows={2}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none"
                         />
@@ -493,7 +494,7 @@ export function Dashboard() {
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Our Story Content</label>
                         <textarea
-                          defaultValue="IBD Community Network was founded with a simple yet powerful mission: to create a comprehensive resource for individuals affected by inflammatory bowel disease. We recognized the need for a platform that connects patients with qualified specialists, provides evidence-based educational content, and fosters a supportive community."
+                          defaultValue={config.foundingStory}
                           rows={6}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none"
                         />
@@ -531,7 +532,7 @@ export function Dashboard() {
                         <label className="block text-sm font-medium text-gray-700 mb-2">Site Name</label>
                         <input
                           type="text"
-                          defaultValue="IBD Community"
+                          defaultValue={config.shortName}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none"
                         />
                       </div>

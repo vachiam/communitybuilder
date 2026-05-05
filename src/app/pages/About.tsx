@@ -1,5 +1,6 @@
 import { Users, Target, Heart, Award, BookOpen, Lightbulb } from 'lucide-react';
 import ctaBg from '../../imports/photo-1631557676757-fcc7b1160be8.avif';
+import config from '../../community.config';
 
 export function About() {
   return (
@@ -10,10 +11,10 @@ export function About() {
           <div>
             <p className="text-blue-400 font-semibold text-sm uppercase tracking-widest mb-6">About Us</p>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-              About IBD Community Network
+              About {config.name}
             </h1>
             <p className="text-xl text-blue-200 leading-relaxed max-w-md">
-              Empowering individuals living with inflammatory bowel disease through education, expert connections, and community support.
+              {config.mission}
             </p>
           </div>
         </div>
@@ -56,10 +57,7 @@ export function About() {
                 Built on a simple yet powerful mission
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                IBD Community Network was founded with a simple yet powerful mission: to create a
-                comprehensive resource for individuals affected by inflammatory bowel disease. We
-                recognized the need for a platform that connects patients with qualified specialists,
-                provides evidence-based educational content, and fosters a supportive community.
+                {config.foundingStory}
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
                 Since our inception, we've grown into a trusted network of healthcare professionals,
