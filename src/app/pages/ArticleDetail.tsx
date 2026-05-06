@@ -185,10 +185,12 @@ export function ArticleDetail() {
           {/* AI Suggested Sidebar */}
           <aside className="space-y-6">
             <div className="bg-white border border-gray-200 rounded-xl p-5 sticky top-24">
-              <div className="flex items-center gap-2 mb-4">
-                <Sparkles size={16} className="text-blue-600" />
-                <h3 className="text-sm font-semibold text-gray-900">{config.labels.aiLabel} suggested</h3>
-                <span className="text-xs text-gray-400">based on this article</span>
+              <div className="flex items-start gap-2 mb-4">
+                <Sparkles size={16} className="text-blue-600 mt-0.5 shrink-0" />
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-900">{config.labels.aiLabel} suggested</h3>
+                  <p className="text-xs text-gray-400">based on this article</p>
+                </div>
               </div>
               <div className="space-y-4">
                 {suggestedArticles.length > 0 ? suggestedArticles.map((a) => (
