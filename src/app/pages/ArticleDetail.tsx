@@ -78,7 +78,7 @@ export function ArticleDetail() {
             <div className="mb-8">
               <button
                 onClick={() => setSummaryOpen(!summaryOpen)}
-                className="w-full flex items-center justify-between gap-3 px-4 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl hover:from-blue-100 hover:to-indigo-100 transition-colors"
+                className={`w-full flex items-center justify-between gap-3 px-4 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 hover:from-blue-100 hover:to-indigo-100 transition-colors ${summaryOpen ? 'rounded-t-xl' : 'rounded-xl'}`}
               >
                 <div className="flex items-center gap-2">
                   <Sparkles size={16} className="text-blue-600 shrink-0" />
@@ -91,7 +91,7 @@ export function ArticleDetail() {
                 }
               </button>
               {summaryOpen && (
-                <div className="mt-2 px-4 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 border-t-0 rounded-b-xl">
+                <div className="px-4 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 border-t-0 rounded-b-xl">
                   <ul className="space-y-3">
                     {article.aiSummary.map((point, i) => (
                       <li key={i} className="flex gap-3 text-sm text-gray-700">
