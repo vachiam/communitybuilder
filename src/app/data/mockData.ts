@@ -28,6 +28,7 @@ export interface Article {
   excerpt: string;
   body: string;
   tags: string[];
+  aiSummary: string[];
 }
 
 export interface Event {
@@ -116,7 +117,12 @@ export const mockArticles: Article[] = [
     readTime: "8 min read",
     excerpt: "Learn about the fundamentals of IBD, including symptoms, diagnosis, and treatment options available today.",
     body: "Inflammatory Bowel Disease (IBD) is a term primarily used to describe two conditions: Crohn's disease and ulcerative colitis. Both involve chronic inflammation of the gastrointestinal tract, but they affect different areas and have distinct characteristics...",
-    tags: ["IBD Basics", "Education", "Treatment"]
+    tags: ["IBD Basics", "Education", "Treatment"],
+    aiSummary: [
+      "IBD encompasses Crohn's disease and ulcerative colitis — both cause chronic GI inflammation but affect different areas.",
+      "Early diagnosis significantly improves outcomes; symptoms like persistent diarrhea, abdominal pain, or blood in stool warrant prompt evaluation.",
+      "Treatment has advanced rapidly — biologics and small-molecule therapies now achieve remission in cases where older medications failed.",
+    ]
   },
   {
     id: "2",
@@ -128,7 +134,12 @@ export const mockArticles: Article[] = [
     readTime: "6 min read",
     excerpt: "Discover how dietary modifications can help manage IBD symptoms and improve quality of life.",
     body: "While diet alone cannot cure IBD, research shows that certain dietary approaches can help manage symptoms and reduce inflammation. The key is finding what works for your individual body...",
-    tags: ["Nutrition", "Diet", "Lifestyle"]
+    tags: ["Nutrition", "Diet", "Lifestyle"],
+    aiSummary: [
+      "No single diet works for all IBD patients — an elimination approach helps identify individual trigger foods.",
+      "Low-FODMAP and specific carbohydrate diets have the strongest evidence for symptom reduction during flares.",
+      "Nutritional deficiencies (iron, B12, vitamin D) are common in IBD and should be monitored regularly.",
+    ]
   },
   {
     id: "3",
@@ -140,7 +151,12 @@ export const mockArticles: Article[] = [
     readTime: "5 min read",
     excerpt: "Recent clinical trials demonstrate significant improvements in remission rates with next-generation biologics.",
     body: "The landscape of IBD treatment continues to evolve with the development of targeted biologic therapies. Recent FDA approvals have given patients more options than ever before...",
-    tags: ["Research", "Treatment", "Biologics"]
+    tags: ["Research", "Treatment", "Biologics"],
+    aiSummary: [
+      "Next-generation biologics target specific inflammatory pathways, improving efficacy with fewer systemic side effects.",
+      "Clinical trials show remission rates above 40% for patients who failed prior biologic therapy.",
+      "Combination therapy (biologic + immunomodulator) remains effective but requires careful monitoring.",
+    ]
   },
   {
     id: "4",
@@ -152,7 +168,12 @@ export const mockArticles: Article[] = [
     readTime: "10 min read",
     excerpt: "A comprehensive look at surgical options for IBD patients and recovery expectations.",
     body: "While many IBD patients can manage their condition with medication, some may require surgery. Understanding when surgery becomes necessary and what to expect can help reduce anxiety...",
-    tags: ["Surgery", "Treatment", "Recovery"]
+    tags: ["Surgery", "Treatment", "Recovery"],
+    aiSummary: [
+      "Surgery is needed in roughly 70–80% of Crohn's patients and 30% of ulcerative colitis patients at some point.",
+      "Laparoscopic techniques have dramatically reduced recovery times — most patients return home within 3–5 days.",
+      "Surgery is not a cure for Crohn's but can provide years of symptom relief and improved quality of life.",
+    ]
   },
   {
     id: "5",
@@ -164,7 +185,12 @@ export const mockArticles: Article[] = [
     readTime: "7 min read",
     excerpt: "Real patients share their journeys to finding balance and thriving despite their diagnosis.",
     body: "Living with IBD presents unique challenges, but many patients have found ways to live full, active lives. Here are inspiring stories from our community...",
-    tags: ["Patient Stories", "Inspiration", "Lifestyle"]
+    tags: ["Patient Stories", "Inspiration", "Lifestyle"],
+    aiSummary: [
+      "Patients who connect with others in similar situations report significantly lower anxiety and better treatment adherence.",
+      "Structured routines around meals, sleep, and stress management are the most cited factors in long-term remission.",
+      "Many IBD patients maintain active careers, exercise regularly, and start families — the diagnosis is manageable.",
+    ]
   },
   {
     id: "6",
@@ -176,7 +202,12 @@ export const mockArticles: Article[] = [
     readTime: "9 min read",
     excerpt: "Essential information for parents navigating an IBD diagnosis in their child.",
     body: "When a child is diagnosed with IBD, it affects the entire family. Understanding pediatric IBD and how to support your child is crucial for their long-term wellbeing...",
-    tags: ["Pediatrics", "Family", "Support"]
+    tags: ["Pediatrics", "Family", "Support"],
+    aiSummary: [
+      "Pediatric IBD often presents differently than adult IBD — growth delays and fatigue can be early warning signs.",
+      "Children with IBD can attend school and participate in sports with appropriate management plans in place.",
+      "Family involvement in treatment decisions improves adherence and long-term outcomes for young patients.",
+    ]
   }
 ];
 

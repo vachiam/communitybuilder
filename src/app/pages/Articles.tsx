@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import { useState } from 'react';
 import { Search, Clock } from 'lucide-react';
 import { mockArticles } from '../data/mockData';
+import config from '../../community.config';
 
 export function Articles() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -31,7 +32,7 @@ export function Articles() {
               <Search className="text-gray-400" size={24} />
               <input
                 type="text"
-                placeholder="Search articles..."
+                placeholder={config.labels.articleSearchPlaceholder}
                 className="flex-1 text-lg outline-none"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}

@@ -1,10 +1,12 @@
 import { useParams, Link, useNavigate } from 'react-router';
-import { Clock, Calendar, ArrowLeft, Tag } from 'lucide-react';
+import { Clock, Calendar, ArrowLeft, Tag, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState } from 'react';
 import { mockArticles, mockExperts } from '../data/mockData';
 
 export function ArticleDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [summaryOpen, setSummaryOpen] = useState(false);
   const article = mockArticles.find(a => a.id === id);
 
   if (!article) {
@@ -24,10 +26,14 @@ export function ArticleDetail() {
     .filter(a => a.id !== article.id && a.category === article.category)
     .slice(0, 3);
 
+  const suggestedArticles = mockArticles
+    .filter(a => a.id !== article.id && a.tags.some(t => article.tags.includes(t)))
+    .slice(0, 3);
+
   return (
     <div>
       <section className="bg-gray-50 py-8 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => navigate('/articles')}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
@@ -38,124 +44,195 @@ export function ArticleDetail() {
         </div>
       </section>
 
-      <article className="py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-              {article.category}
-            </span>
-          </div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-12">
 
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            {article.title}
-          </h1>
-
-          <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-8 pb-8 border-b border-gray-200">
-            <div className="flex items-center gap-2">
-              <Calendar size={20} />
-              <span>
-                {new Date(article.publishDate).toLocaleDateString('en-US', {
-                  month: 'long',
-                  day: 'numeric',
-                  year: 'numeric'
-                })}
+          {/* Main article */}
+          <article>
+            <div className="mb-6">
+              <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+                {article.category}
               </span>
             </div>
-            <div className="flex items-center gap-2">
-              <Clock size={20} />
-              <span>{article.readTime}</span>
-            </div>
-          </div>
 
-          <img
-            src={article.featuredImage}
-            alt={article.title}
-            className="w-full h-96 object-cover rounded-lg mb-8"
-          />
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              {article.title}
+            </h1>
 
-          <div className="prose max-w-none mb-8">
-            <p className="text-xl text-gray-700 leading-relaxed mb-6">{article.excerpt}</p>
-
-            <div className="text-gray-700 leading-relaxed space-y-4">
-              <p>{article.body}</p>
-
-              <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Key Takeaways</h2>
-              <ul className="list-disc list-inside space-y-2">
-                <li>Understanding your condition is the first step toward effective management</li>
-                <li>Working closely with healthcare providers ensures personalized treatment plans</li>
-                <li>Lifestyle modifications can significantly impact symptom control</li>
-                <li>Stay informed about new treatment options and research developments</li>
-              </ul>
-
-              <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Next Steps</h2>
-              <p>
-                If you're experiencing symptoms or have questions about IBD management, consider
-                consulting with one of our expert gastroenterologists. Early intervention and
-                proper treatment can make a significant difference in your quality of life.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 mb-8">
-            <Tag size={20} className="text-gray-400" />
-            <div className="flex flex-wrap gap-2">
-              {article.tags.map((tag) => (
-                <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
-                  {tag}
+            <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-6 pb-6 border-b border-gray-200">
+              <div className="flex items-center gap-2">
+                <Calendar size={20} />
+                <span>
+                  {new Date(article.publishDate).toLocaleDateString('en-US', {
+                    month: 'long', day: 'numeric', year: 'numeric'
+                  })}
                 </span>
-              ))}
-            </div>
-          </div>
-
-          {authorExpert && (
-            <div className="bg-gray-50 rounded-lg p-6 mb-12">
-              <h3 className="text-lg font-semibold mb-4">About the Author</h3>
-              <div className="flex gap-4">
-                <img
-                  src={authorExpert.image}
-                  alt={authorExpert.name}
-                  className="w-20 h-20 rounded-full object-cover"
-                />
-                <div className="flex-1">
-                  <Link
-                    to={`/experts/${authorExpert.id}`}
-                    className="text-xl font-semibold text-blue-600 hover:text-blue-700"
-                  >
-                    {authorExpert.name}
-                  </Link>
-                  <p className="text-gray-600 mb-2">{authorExpert.title}</p>
-                  <p className="text-gray-700 text-sm line-clamp-2">{authorExpert.bio}</p>
-                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock size={20} />
+                <span>{article.readTime}</span>
               </div>
             </div>
-          )}
 
-          {relatedArticles.length > 0 && (
-            <div>
-              <h2 className="text-2xl font-semibold mb-6">Related Articles</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {relatedArticles.map((relatedArticle) => (
+            {/* AI Summary pill */}
+            <div className="mb-8">
+              <button
+                onClick={() => setSummaryOpen(!summaryOpen)}
+                className="w-full flex items-center justify-between gap-3 px-4 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl hover:from-blue-100 hover:to-indigo-100 transition-colors"
+              >
+                <div className="flex items-center gap-2">
+                  <Sparkles size={16} className="text-blue-600 shrink-0" />
+                  <span className="text-sm font-semibold text-blue-700">AI Summary</span>
+                  <span className="text-xs text-blue-500 bg-blue-100 px-2 py-0.5 rounded-full">3 key points</span>
+                </div>
+                {summaryOpen
+                  ? <ChevronUp size={16} className="text-blue-500 shrink-0" />
+                  : <ChevronDown size={16} className="text-blue-500 shrink-0" />
+                }
+              </button>
+              {summaryOpen && (
+                <div className="mt-2 px-4 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 border-t-0 rounded-b-xl">
+                  <ul className="space-y-3">
+                    {article.aiSummary.map((point, i) => (
+                      <li key={i} className="flex gap-3 text-sm text-gray-700">
+                        <span className="w-5 h-5 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-xs text-blue-400 mt-4">Generated by AI · Always consult a healthcare professional</p>
+                </div>
+              )}
+            </div>
+
+            <img
+              src={article.featuredImage}
+              alt={article.title}
+              className="w-full h-80 object-cover rounded-xl mb-8"
+            />
+
+            <div className="prose max-w-none mb-8">
+              <p className="text-xl text-gray-700 leading-relaxed mb-6">{article.excerpt}</p>
+              <div className="text-gray-700 leading-relaxed space-y-4">
+                <p>{article.body}</p>
+                <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Key Takeaways</h2>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Understanding your condition is the first step toward effective management</li>
+                  <li>Working closely with healthcare providers ensures personalized treatment plans</li>
+                  <li>Lifestyle modifications can significantly impact symptom control</li>
+                  <li>Stay informed about new treatment options and research developments</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 mb-8">
+              <Tag size={20} className="text-gray-400" />
+              <div className="flex flex-wrap gap-2">
+                {article.tags.map((tag) => (
+                  <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {authorExpert && (
+              <div className="bg-gray-50 rounded-xl p-6 mb-12">
+                <h3 className="text-lg font-semibold mb-4">About the Author</h3>
+                <div className="flex gap-4">
+                  <img
+                    src={authorExpert.image}
+                    alt={authorExpert.name}
+                    className="w-20 h-20 rounded-full object-cover"
+                  />
+                  <div className="flex-1">
+                    <Link
+                      to={`/experts/${authorExpert.id}`}
+                      className="text-xl font-semibold text-blue-600 hover:text-blue-700"
+                    >
+                      {authorExpert.name}
+                    </Link>
+                    <p className="text-gray-600 mb-2">{authorExpert.title}</p>
+                    <p className="text-gray-700 text-sm line-clamp-2">{authorExpert.bio}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {relatedArticles.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-semibold mb-6">Related Articles</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {relatedArticles.map((a) => (
+                    <Link
+                      key={a.id}
+                      to={`/articles/${a.id}`}
+                      className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow"
+                    >
+                      <img src={a.featuredImage} alt={a.title} className="w-full h-40 object-cover" />
+                      <div className="p-4">
+                        <h3 className="font-semibold mb-2 line-clamp-2">{a.title}</h3>
+                        <p className="text-sm text-gray-500">{a.readTime}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </article>
+
+          {/* AI Suggested Sidebar */}
+          <aside className="space-y-6">
+            <div className="bg-white border border-gray-200 rounded-xl p-5 sticky top-24">
+              <div className="flex items-center gap-2 mb-4">
+                <Sparkles size={16} className="text-blue-600" />
+                <h3 className="text-sm font-semibold text-gray-900">AI suggested</h3>
+                <span className="text-xs text-gray-400">based on this article</span>
+              </div>
+              <div className="space-y-4">
+                {suggestedArticles.length > 0 ? suggestedArticles.map((a) => (
                   <Link
-                    key={relatedArticle.id}
-                    to={`/articles/${relatedArticle.id}`}
-                    className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
+                    key={a.id}
+                    to={`/articles/${a.id}`}
+                    className="flex gap-3 group"
                   >
                     <img
-                      src={relatedArticle.featuredImage}
-                      alt={relatedArticle.title}
-                      className="w-full h-40 object-cover"
+                      src={a.featuredImage}
+                      alt={a.title}
+                      className="w-16 h-16 object-cover rounded-lg shrink-0"
                     />
-                    <div className="p-4">
-                      <h3 className="font-semibold mb-2 line-clamp-2">{relatedArticle.title}</h3>
-                      <p className="text-sm text-gray-500">{relatedArticle.readTime}</p>
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors leading-snug">
+                        {a.title}
+                      </p>
+                      <p className="text-xs text-gray-400 mt-1">{a.readTime}</p>
+                    </div>
+                  </Link>
+                )) : relatedArticles.map((a) => (
+                  <Link
+                    key={a.id}
+                    to={`/articles/${a.id}`}
+                    className="flex gap-3 group"
+                  >
+                    <img
+                      src={a.featuredImage}
+                      alt={a.title}
+                      className="w-16 h-16 object-cover rounded-lg shrink-0"
+                    />
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors leading-snug">
+                        {a.title}
+                      </p>
+                      <p className="text-xs text-gray-400 mt-1">{a.readTime}</p>
                     </div>
                   </Link>
                 ))}
               </div>
             </div>
-          )}
+          </aside>
+
         </div>
-      </article>
+      </div>
     </div>
   );
 }

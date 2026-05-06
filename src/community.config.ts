@@ -30,6 +30,8 @@ const config = {
     expertSearchHint: "name, specialty, or location",
     // e.g. "Specialty" / "Discipline" / "Focus Area"
     expertFilterLabel: "Specialty",
+    // Search bar placeholder on the Articles page
+    articleSearchPlaceholder: "Ask anything about IBD...",
   },
 
   // ─── Features: toggle pages/sections on or off ───────────────────────────────
