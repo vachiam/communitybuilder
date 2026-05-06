@@ -32,6 +32,8 @@ const config = {
     expertFilterLabel: "Specialty",
     // Search bar placeholder on the Articles page
     articleSearchPlaceholder: "Ask anything about IBD...",
+    // How AI features are branded across the site (e.g. "IBD AI", "HepB AI")
+    aiLabel: "IBD AI",
   },
 
   // ─── Features: toggle pages/sections on or off ───────────────────────────────
